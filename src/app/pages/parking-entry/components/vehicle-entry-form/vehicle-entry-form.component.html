@@ -1,0 +1,59 @@
+<div class="form-container">
+  <form [formGroup]="vehicleEntryForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Vehicle License Number</mat-label>
+      <input matInput formControlName="licenseNumber" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Vehicle Type</mat-label>
+      <mat-select formControlName="vehicleType" required>
+        <mat-option *ngFor="let type of vehicleTypes" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Owner Name</mat-label>
+      <input matInput formControlName="ownerName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Owner Phone</mat-label>
+      <input matInput formControlName="ownerPhone" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="in">In</mat-option>
+        <mat-option value="out">Out</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Owner Address</mat-label>
+      <textarea matInput formControlName="ownerAddress" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Entry Time & Date</mat-label>
+      <input matInput [matDatepicker]="entryPicker" formControlName="entryTime" required />
+      <mat-datepicker-toggle matSuffix [for]="entryPicker"></mat-datepicker-toggle>
+      <mat-datepicker #entryPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Exit Time & Date</mat-label>
+      <input matInput [matDatepicker]="exitPicker" formControlName="exitTime" />
+      <mat-datepicker-toggle matSuffix [for]="exitPicker"></mat-datepicker-toggle>
+      <mat-datepicker #exitPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Parking Charge</mat-label>
+      <input matInput formControlName="parkingCharge" type="number" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="vehicleEntryForm.invalid">Submit</button>
+  </form>
+</div>

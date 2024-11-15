@@ -1,0 +1,19 @@
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  mat-form-field {
+    display: block;
+    width: 100%;
+  }
+  
+  button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
