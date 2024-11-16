@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { IVehicle } from '../../interface/vehicle.interface';
 
 @Component({
   selector: 'app-vehicle-entry-form',
@@ -19,6 +20,9 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 export class VehicleEntryFormComponent {
   vehicleEntryForm!: FormGroup;
   vehicleTypes = ['Micro-bus', 'Car', 'Truck', 'Bike'];
+
+  @Input() vehicle!: IVehicle;
+  @Output() vehicleFormOutput = new EventEmitter<IVehicle>();
 
   constructor(private fb: FormBuilder) {
     this.vehicleEntryForm = this.fb.group({
@@ -34,18 +38,17 @@ export class VehicleEntryFormComponent {
     });
   }
 
-  onSubmit() {
-    if (this.vehicleEntryForm.valid) {
-      const vehicleData = this.vehicleEntryForm.value;
-      this.saveToLocalStorage(vehicleData);
-      alert('Vehicle data saved successfully!');
-      this.vehicleEntryForm.reset();
+  ngOnInit(): void {
+    if (this.vehicle) {
+      this.vehicleEntryForm.setValue(this.vehicle);
     }
   }
 
-  saveToLocalStorage(data: any) {
-    const existingData = JSON.parse(localStorage.getItem('vehicleData') || '[]');
-    existingData.push(data);
-    localStorage.setItem('vehicleData', JSON.stringify(existingData));
+  onSubmit() {
+    if (this.vehicleEntryForm.valid) {
+      const vehicleData = this.vehicleEntryForm.value;
+      this.vehicleFormOutput.emit(vehicleData);
+      this.vehicleEntryForm.reset();
+    }
   }
 }
