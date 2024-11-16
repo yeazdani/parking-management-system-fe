@@ -21,7 +21,10 @@ export const appConfig: ApplicationConfig = {
       serializer: CustomRouteSerializer,
     }),
     provideEffects(effects),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+    }),
     provideNgxWebstorage(withNgxWebstorageConfig({ prefix: 'app', separator: '.', caseSensitive: false }), withLocalStorage()),
   ],
 };
