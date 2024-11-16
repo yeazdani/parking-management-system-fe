@@ -39,6 +39,7 @@ export class VehicleEntryFormComponent {
       const vehicleData = this.vehicleEntryForm.value;
       this.saveToLocalStorage(vehicleData);
       alert('Vehicle data saved successfully!');
+      this.vehicleEntryForm.reset();
     }
   }
 
