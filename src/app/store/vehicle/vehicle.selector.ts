@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { State, vehicleFeatureKey } from './vehicle.reducer';
+import { VehicleState, vehicleFeatureKey } from './vehicle.reducer';
 
-export const selectVehicleState = createFeatureSelector<State>(vehicleFeatureKey);
+export const selectVehicleState = createFeatureSelector<VehicleState>(vehicleFeatureKey);
 
-export const selectVehicles = createSelector(selectVehicleState, (state: State) => state);
+export const selectVehicles = createSelector(selectVehicleState, (state: VehicleState) => state);

@@ -20,7 +20,9 @@ export class VehicleEditModalComponent {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('MOdal data :', this.data);
+  ngOnInit(): void {}
+
+  onSubmit(vehicle: IVehicle) {
+    this.dialogRef.close(vehicle)
   }
 }

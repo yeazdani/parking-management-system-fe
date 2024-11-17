@@ -7,7 +7,7 @@ import { VehicleEffects } from './vehicle/vehicle.effect';
 
 export interface AppState {
   router: RouterReducerState<any>;
-  [vehicleFeatureKey]: vehicle.State;
+  [vehicleFeatureKey]: vehicle.VehicleState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {

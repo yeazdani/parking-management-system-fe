@@ -3,6 +3,7 @@ import { VehicleEntryFormComponent } from '../../shared/components/vehicle-entry
 import { IVehicle } from '../../shared/interface/vehicle.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
+import { createVehicleAction } from '../../store/vehicle/vehicle.action';
 
 @Component({
   selector: 'app-parking-entry',
@@ -16,5 +17,7 @@ export class ParkingEntryComponent {
 
   ngOnInit(): void {}
 
-  addVehicle(vehicleData: IVehicle) {}
+  addVehicle(vehicleData: IVehicle) {
+    this.store.dispatch(createVehicleAction({ vehicle: vehicleData }));
+  }
 }

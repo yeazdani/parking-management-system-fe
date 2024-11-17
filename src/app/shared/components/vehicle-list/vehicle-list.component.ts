@@ -1,8 +1,6 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { IVehicle } from '../../interface/vehicle.interface';
-import { VehicleEditModalComponent } from '../../../pages/parking-list/vehicle-edit-modal/vehicle-edit-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IVehicle } from '../../interface/vehicle.interface';
 
 @Component({
   selector: 'app-vehicle-list',

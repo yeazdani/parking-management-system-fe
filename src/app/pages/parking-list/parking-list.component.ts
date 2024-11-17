@@ -1,27 +1,16 @@
-import { Component, inject, Input } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+
 import { IVehicle } from '../../shared/interface/vehicle.interface';
 import { VehicleEditModalComponent } from './vehicle-edit-modal/vehicle-edit-modal.component';
 import { VehicleListComponent } from '../../shared/components/vehicle-list/vehicle-list.component';
 
-export const vehicles: IVehicle[] = [
-  {
-    licenseNumber: 'ASXE#43',
-    vehicleType: 'Car',
-    ownerName: 'John Doe',
-    ownerPhone: '01683204856',
-    status: 'in',
-    ownerAddress: 'Adabor, Dhaka',
-    entryTime: new Date(),
-    exitTime: null,
-    parkingCharge: 4,
-  },
-];
+import { AppState } from '../../store';
+import { selectVehicles } from '../../store/vehicle/vehicle.selector';
+import { editVehicleAction } from '../../store/vehicle/vehicle.action';
 
 @Component({
   selector: 'app-parking-list',
@@ -31,17 +20,29 @@ export const vehicles: IVehicle[] = [
   styleUrl: './parking-list.component.scss',
 })
 export class ParkingListComponent {
-  vehicles = vehicles;
+  vehicles: IVehicle[] = [];
   readonly dialog = inject(MatDialog);
 
-  constructor() {}
+  private subcription: Subscription = new Subscription();
 
-  ngOnInit(): void {}
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit(): void {
+    this.subcription.add(
+      this.store.select(selectVehicles).subscribe((vehicleState) => {
+        this.vehicles = vehicleState.vehicles;
+      })
+    );
+  }
 
   onVehicleEdit(vehicle: IVehicle) {
     const dialogRef = this.dialog.open(VehicleEditModalComponent, { data: vehicle });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe({
+      next: (vehicle: IVehicle) => {
+        this.store.dispatch(editVehicleAction({ vehicle }));
+      },
     });
   }
+
+  ngOnDestroy(): void {}
 }

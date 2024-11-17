@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,15 +26,16 @@ export class VehicleEntryFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.vehicleEntryForm = this.fb.group({
-      licenseNumber: ['', Validators.required],
-      vehicleType: ['', Validators.required],
-      ownerName: ['', Validators.required],
-      ownerPhone: ['', [Validators.required]],
-      status: ['', Validators.required],
+      id: [''],
+      licenseNumber: [''],
+      vehicleType: [''],
+      ownerName: [''],
+      ownerPhone: [''],
+      status: [''],
       ownerAddress: [''],
-      entryTime: ['', Validators.required],
+      entryTime: [''],
       exitTime: [''],
-      parkingCharge: [0, [Validators.required, Validators.min(0)]],
+      parkingCharge: [0],
     });
   }
 
