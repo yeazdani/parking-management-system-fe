@@ -1,1 +1,13 @@
-<p>settings works!</p>
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+  <!-- Total Capacity -->
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Total Capacity</mat-label>
+    <input matInput min="0" type="number" formControlName="totalCapacity" placeholder="Enter total capacity" />
+  </mat-form-field>
+
+  <!-- Form Actions -->
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="settingsForm.invalid && !settingsForm.touched">Save</button>
+    <button mat-raised-button color="warn" type="button" (click)="clearLocalStorage()">Clear Local Storage</button>
+  </div>
+</form>

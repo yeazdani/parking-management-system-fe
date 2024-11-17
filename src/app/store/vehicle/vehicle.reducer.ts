@@ -1,15 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
 import { IVehicle } from '../../shared/interface/vehicle.interface';
-import { createVehicleAction, createVehicleSuccessAction, editVehicleSuccessAction, getVehiclesAction } from './vehicle.action';
+import { clearStorageSuccess, createVehicleAction, createVehicleSuccessAction, editVehicleSuccessAction, getVehiclesAction, setEmptySlots, setTotalCapacitySuccess } from './vehicle.action';
 
 export const vehicleFeatureKey = 'vehicle';
 
 export interface VehicleState {
   vehicles: IVehicle[];
+  totalCapacity: number | null;
+  emptySlots: number | null;
 }
 
 export const initialState: VehicleState = {
   vehicles: [],
+  totalCapacity: null,
+  emptySlots: null,
 };
 
 export const reducer = createReducer(
@@ -22,8 +26,24 @@ export const reducer = createReducer(
     ...state,
     vehicles: vehicles,
   })),
-  on(getVehiclesAction, (state, { vehicles }) => ({
+  on(setTotalCapacitySuccess, (state, { totalCapacity }) => ({
     ...state,
-    vehicles: vehicles,
+    totalCapacity: totalCapacity,
+  })),
+  on(getVehiclesAction, (state, { vehicleState }) => ({
+    ...state,
+    vehicles: vehicleState.vehicles,
+    totalCapacity: vehicleState.totalCapacity,
+    emptySlots: vehicleState.emptySlots,
+  })),
+  on(setEmptySlots, (state, { emptySlots }) => ({
+    ...state,
+    emptySlots: emptySlots,
+  })),
+  on(clearStorageSuccess, (state) => ({
+    ...state,
+    vehicles: [],
+    totalCapacity: null,
+    emptySlots: null,
   }))
 );

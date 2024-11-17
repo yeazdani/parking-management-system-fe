@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { IVehicle } from '../interface/vehicle.interface';
-
-export enum ELocalStorageKeys {
-  VEHICLES = 'vehicles',
-}
+import { ELocalStorageKeys } from '../enum/shared.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +18,6 @@ export class StorageService {
   }
 
   addVehicle(vehicle: IVehicle): void {
-    console.log('vehicle :', vehicle);
     if (this.getVehicles().length > 0) {
       const vehicles = [...this.getVehicles()];
       vehicles.push(vehicle);
@@ -33,10 +29,17 @@ export class StorageService {
     }
   }
 
+  setTotalTotalCapacity(totalCapacity: number): void {
+    this.localStorage.store(ELocalStorageKeys.TOTAL_CAPACITY, totalCapacity);
+  }
+
+  getTotalTotalCapacity() {
+    return this.localStorage.retrieve(ELocalStorageKeys.TOTAL_CAPACITY) || null;
+  }
+
   updateVehicle(updatedVehicle: IVehicle): void {
     const vehicles = [...this.getVehicles()];
     const index = vehicles.findIndex((item) => item.id === updatedVehicle.id);
-    console.log('index :', index);
     if (vehicles[index]) {
       vehicles[index] = updatedVehicle;
       this.saveVehicles(vehicles);
@@ -51,7 +54,8 @@ export class StorageService {
     }
   }
 
-  clearVehicles(): void {
+  clearStorage(): void {
     this.localStorage.clear(ELocalStorageKeys.VEHICLES);
+    this.localStorage.clear(ELocalStorageKeys.TOTAL_CAPACITY);
   }
 }
