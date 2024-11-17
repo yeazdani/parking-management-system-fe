@@ -1,4 +1,5 @@
 export interface IVehicle {
+  id?: number | null;
   licenseNumber?: string | null;
   vehicleType?: 'Micro-bus' | 'Car' | 'Truck' | 'Bike' | null;
   ownerName?: string | null;

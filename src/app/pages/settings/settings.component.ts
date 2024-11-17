@@ -18,31 +18,7 @@ export class SettingsComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    const data: IVehicle = {
-      licenseNumber: 'ABC25X0',
-      vehicleType: 'Bike',
-      ownerName: 'Yeazdani',
-      ownerPhone: null,
-      status: null,
-      ownerAddress: null,
-      entryTime: null,
-      exitTime: null,
-      parkingCharge: null,
-    };
-
-    this.store.dispatch(createVehicleAction({ data: data }));
-
-    // this.subscription.add(
-    //   this.store
-    //     .select((state) => state)
-    //     .subscribe((state) => {
-    //       console.log('Full state from store:', state);
-    //     })
-    // );
-
-    this.store.select(selectVehicles).subscribe((data) => {
-      console.log('data :', data);
-    });
+ 
   }
 
   ngOnDestroy(): void {

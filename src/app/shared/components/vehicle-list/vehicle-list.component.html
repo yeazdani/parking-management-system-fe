@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Owener Name</th>
+      <th>Vehicle Type</th>
+      <th>License Number</th>
+      <th>Entry Time</th>
+      <th>Exit Time</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehicle of vehicles; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ vehicle.ownerName }}</td>
+      <td>{{ vehicle.vehicleType }}</td>
+      <td>{{ vehicle.licenseNumber }}</td>
+      @if(vehicle.entryTime){
+      <td>{{ vehicle.entryTime | date : 'short' }}</td>
+      }@else{
+      <td><span>onGoin</span></td>
+      } @if(vehicle.exitTime){
+      <td>{{ vehicle.exitTime | date : 'short' }}</td>
+      }@else{
+      <td><span>Currently on park</span></td>
+      }
+      <td>{{ vehicle.status }}</td>
+      <td style="border: 0px"><button (click)="onVehicleEdit(vehicle)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>

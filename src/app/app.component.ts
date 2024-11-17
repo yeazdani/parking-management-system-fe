@@ -8,8 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { AppState } from './store';
 import { Store } from '@ngrx/store';
-import { createVehicleAction } from './store/vehicle/vehicle.action';
-import { IVehicle } from './shared/interface/vehicle.interface';
+import { browserReloadAction } from './store/vehicle/vehicle.action';
 
 @Component({
   selector: 'app-root',
@@ -24,16 +23,6 @@ export class AppComponent {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    const vehicleData: IVehicle = {
-      licenseNumber: 'ABC25X0',
-      vehicleType: 'Bike',
-      ownerName: 'Yeazdani',
-      ownerPhone: null,
-      status: null,
-      ownerAddress: null,
-      entryTime: null,
-      exitTime: null,
-      parkingCharge: null,
-    };
+    this.store.dispatch(browserReloadAction());
   }
 }

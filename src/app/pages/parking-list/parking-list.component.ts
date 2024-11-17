@@ -1,88 +1,48 @@
-import { Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IVehicle } from '../../shared/interface/vehicle.interface';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
-export const vehicles: IVehicle[] = [
-  {
-    ownerName: 'John Doe',
-    vehicleType: 'Car',
-    licenseNumber: 'ABC123',
-    entryTime: new Date('2024-11-15T08:30:00'),
-    exitTime: new Date('2024-11-15T17:30:00'),
-    status: 'in',
-  },
-  {
-    ownerName: 'Jane Smith',
-    vehicleType: 'Truck',
-    licenseNumber: 'XYZ789',
-    entryTime: new Date('2024-11-15T09:00:00'),
-    exitTime: undefined, // No exit time yet
-    status: 'out',
-  },
-  {
-    ownerName: 'Alice Brown',
-    vehicleType: 'Bike',
-    licenseNumber: 'BIKE123',
-    entryTime: new Date('2024-11-15T10:00:00'),
-    exitTime: undefined,
-    status: 'in',
-  },
-];
+import { IVehicle } from '../../shared/interface/vehicle.interface';
+import { VehicleEditModalComponent } from './vehicle-edit-modal/vehicle-edit-modal.component';
+import { VehicleListComponent } from '../../shared/components/vehicle-list/vehicle-list.component';
+
+import { AppState } from '../../store';
+import { selectVehicles } from '../../store/vehicle/vehicle.selector';
+import { editVehicleAction } from '../../store/vehicle/vehicle.action';
 
 @Component({
   selector: 'app-parking-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatTableModule],
+  imports: [CommonModule, VehicleListComponent],
   templateUrl: './parking-list.component.html',
   styleUrl: './parking-list.component.scss',
 })
 export class ParkingListComponent {
-  vehicles = vehicles;
-  keys = Object.keys(this.vehicles[0]);
+  vehicles: IVehicle[] = [];
+  readonly dialog = inject(MatDialog);
 
-  constructor() {}
+  private subcription: Subscription = new Subscription();
+
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    this.subcription.add(
+      this.store.select(selectVehicles).subscribe((vehicleState) => {
+        this.vehicles = vehicleState.vehicles;
+      })
+    );
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  onVehicleEdit(vehicle: IVehicle) {
+    const dialogRef = this.dialog.open(VehicleEditModalComponent, { data: vehicle });
+    dialogRef.afterClosed().subscribe({
+      next: (vehicle: IVehicle) => {
+        this.store.dispatch(editVehicleAction({ vehicle }));
+      },
+    });
   }
 
-  newVehicle = {
-    ownerName: '',
-    vehicleType: '',
-    licenseNumber: '',
-    status: 'In',
-    isEditing: false,
-  };
-
-  // addVehicle() {
-  //   if (this.newVehicle.ownerName && this.newVehicle.vehicleType && this.newVehicle.licenseNumber) {
-  //     this.vehicles.push({ ...this.newVehicle });
-  //     this.resetNewVehicle();
-  //   }
-  // }
-
-  editVehicle(vehicle: any) {}
-
-  deleteVehicle(index: number) {
-    this.vehicles.splice(index, 1);
-  }
-
-  resetNewVehicle() {
-    this.newVehicle = {
-      ownerName: '',
-      vehicleType: '',
-      licenseNumber: '',
-      status: 'In',
-      isEditing: false,
-    };
-  }
+  ngOnDestroy(): void {}
 }
