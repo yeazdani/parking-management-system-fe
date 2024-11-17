@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,7 +16,7 @@ import { editVehicleAction } from '../../store/vehicle/vehicle.action';
 @Component({
   selector: 'app-parking-list',
   standalone: true,
-  imports: [CommonModule, VehicleListComponent],
+  imports: [CommonModule, VehicleListComponent, RouterLink],
   templateUrl: './parking-list.component.html',
   styleUrl: './parking-list.component.scss',
 })

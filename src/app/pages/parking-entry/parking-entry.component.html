@@ -1,1 +1,7 @@
+@if(totalCapacity != null && totalCapacity>0){
 <app-vehicle-entry-form (vehicleFormOutput)="addVehicle($event)"></app-vehicle-entry-form>
+}@else{
+    <div class="center-text">
+        <p>No Total Capacity Is Set. Please Go to <a [routerLink]="['/settings']" routerLinkActive="router-link-active">Settings</a> Page To Set Total Capacity to Add Any Vehicle!</p>
+      </div>
+}

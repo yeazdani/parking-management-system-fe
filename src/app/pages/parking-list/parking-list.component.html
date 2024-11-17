@@ -1,1 +1,7 @@
+@if(vehicles.length){
 <app-vehicle-list [vehicles]="vehicles" (onEditOutput)="onVehicleEdit($event)"></app-vehicle-list>
+}@else{
+<div class="center-text">
+  <p>No Vehicle Was Added. Please <a [routerLink]="['/parking-entry']" routerLinkActive="router-link-active">Add</a> a Vehicle!</p>
+</div>
+}
