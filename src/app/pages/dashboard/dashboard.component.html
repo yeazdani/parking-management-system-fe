@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<mat-card appearance="outlined">
+  <mat-card-content>Total Cars Parked: <span style="float: right">100</span></mat-card-content>
+</mat-card>
+<br />
+<mat-card appearance="outlined">
+  <mat-card-content>Currently In Parking: <span style="float: right">7</span></mat-card-content>
+</mat-card>
+<br />
+<mat-card appearance="outlined">
+  <mat-card-content>Available Parking Slots: <span style="float: right">19</span></mat-card-content>
+</mat-card>
+<br />
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div>
+      <span>Cars are in parking more than 2 hours:</span>
+    </div>
+    <div style="float: right">
+      <li>hello</li>
+      <li>mello</li>
+    </div>
+  </mat-card-content>
+</mat-card>
+<br />
+<div class="two-columns">
+  <div class="column">
+    <app-pie-chart></app-pie-chart>
+  </div>
+  <div class="column">
+    <app-line-chart></app-line-chart>
+  </div>
+</div>
