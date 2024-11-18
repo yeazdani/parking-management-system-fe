@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IVehicle } from '../../shared/interface/vehicle.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
-import { clearLocalStorage, createVehicleAction, setTotalCapacity } from '../../store/vehicle/vehicle.action';
+import { clearLocalStorage, createVehicleAction, populateMockData, setTotalCapacity } from '../../store/vehicle/vehicle.action';
 import { Subject, Subscription } from 'rxjs';
 import { selectVehicles } from '../../store/vehicle/vehicle.selector';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,6 +13,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { StorageService } from '../../shared/services/storage.service';
+import { mockVehicles } from '../../mock/mock-data';
 
 @Component({
   selector: 'app-settings',
@@ -50,6 +51,10 @@ export class SettingsComponent {
 
   clearLocalStorage(): void {
     this.store.dispatch(clearLocalStorage());
+  }
+
+  populateMockData() {
+    this.store.dispatch(populateMockData({ vehicles: mockVehicles }));
   }
 
   ngOnDestroy(): void {

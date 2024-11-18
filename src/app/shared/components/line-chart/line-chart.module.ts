@@ -5,10 +5,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [LineChartComponent],
-  imports: [
-    CommonModule,
-    NgxChartsModule, // Importing ngx-charts for line chart support
-  ],
-  exports: [LineChartComponent], // Export the component for use in other modules
+  imports: [CommonModule, NgxChartsModule],
+  exports: [LineChartComponent],
 })
 export class LineChartModule {}

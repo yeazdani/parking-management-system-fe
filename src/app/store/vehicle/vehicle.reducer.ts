@@ -1,6 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
 import { IVehicle } from '../../shared/interface/vehicle.interface';
-import { clearStorageSuccess, createVehicleAction, createVehicleSuccessAction, editVehicleSuccessAction, getVehiclesAction, setEmptySlots, setTotalCapacitySuccess } from './vehicle.action';
+import {
+  clearStorageSuccess,
+  createVehicleAction,
+  createVehicleSuccessAction,
+  editVehicleSuccessAction,
+  getVehiclesAction,
+  populateMockDataSuccess,
+  setEmptySlots,
+  setTotalCapacitySuccess,
+} from './vehicle.action';
 
 export const vehicleFeatureKey = 'vehicle';
 
@@ -45,5 +54,9 @@ export const reducer = createReducer(
     vehicles: [],
     totalCapacity: null,
     emptySlots: null,
+  })),
+  on(populateMockDataSuccess, (state, { vehicles }) => ({
+    ...state,
+    vehicles: vehicles,
   }))
 );

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Color, LegendPosition, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
@@ -9,9 +9,9 @@ import { Color, LegendPosition, NgxChartsModule, ScaleType } from '@swimlane/ngx
   styleUrl: './pie-chart.component.scss',
 })
 export class PieChartComponent {
-  constructor() {
-    Object.assign(this, { single });
-  }
+  @Input() pieChartData!: { name: string; value: number }[];
+
+  constructor() {}
 
   view: [number, number] = [700, 400];
 
@@ -22,17 +22,14 @@ export class PieChartComponent {
     name: 'Customer Usage',
   };
 
-  single = [
-    { name: 'Germany', value: 8940000 },
-    { name: 'USA', value: 5000000 },
-    { name: 'France', value: 7200000 },
-  ];
-
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: LegendPosition = LegendPosition.Below;
+
+  ngOnInit(): void {
+  }
 
   onSelect(event: any): void {
     console.log('Item clicked', event);
@@ -46,22 +43,3 @@ export class PieChartComponent {
     console.log('Deactivate', event);
   }
 }
-
-export const single = [
-  {
-    name: 'Germany',
-    value: 8940000,
-  },
-  {
-    name: 'USA',
-    value: 5000000,
-  },
-  {
-    name: 'France',
-    value: 7200000,
-  },
-  {
-    name: 'UK',
-    value: 6200000,
-  },
-];

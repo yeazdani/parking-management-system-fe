@@ -1,32 +1,47 @@
 <mat-card appearance="outlined">
-  <mat-card-content>Total Cars Parked: <span style="float: right">100</span></mat-card-content>
+  <mat-card-content
+    >Total Cars Parked: <span style="float: right">{{ totalCarParked }}</span></mat-card-content
+  >
+</mat-card>
+
+<br />
+<mat-card appearance="outlined">
+  <mat-card-content
+    >Total Parking Slots: <span style="float: right">{{ totalParkingSlots }}</span></mat-card-content
+  >
 </mat-card>
 <br />
 <mat-card appearance="outlined">
-  <mat-card-content>Currently In Parking: <span style="float: right">7</span></mat-card-content>
+  <mat-card-content
+    >Available Parking Slots: <span style="float: right">{{ availableParkingSlots }}</span></mat-card-content
+  >
 </mat-card>
 <br />
-<mat-card appearance="outlined">
-  <mat-card-content>Available Parking Slots: <span style="float: right">19</span></mat-card-content>
-</mat-card>
-<br />
-<mat-card appearance="outlined">
+<!-- <mat-card appearance="outlined">
   <mat-card-content>
     <div>
       <span>Cars are in parking more than 2 hours:</span>
     </div>
     <div style="float: right">
-      <li>hello</li>
-      <li>mello</li>
+      <li>type 1</li>
+      <li>type 2</li>
     </div>
   </mat-card-content>
 </mat-card>
-<br />
+<br /> -->
 <div class="two-columns">
   <div class="column">
-    <app-pie-chart></app-pie-chart>
+    @if(pieCharData){
+    <app-pie-chart [pieChartData]="pieCharData"></app-pie-chart>
+    }@else{
+    <div style="color: black">Pie Chart Data Is Not Available</div>
+    }
   </div>
   <div class="column">
+    @if(pieCharData){
     <app-line-chart></app-line-chart>
+    }@else{
+    <div style="color: black">Line Chart Data Is Not Available</div>
+    }
   </div>
 </div>

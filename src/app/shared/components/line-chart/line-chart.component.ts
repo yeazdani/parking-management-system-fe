@@ -8,6 +8,73 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
   styleUrl: './line-chart.component.scss',
 })
 export class LineChartComponent {
+  views = ['daily', 'weekly', 'monthly'];
+  
+  vehicles: { entryTime: Date }[] = [
+    { entryTime: new Date('2024-11-10T10:00:00') },
+    { entryTime: new Date('2024-11-10T12:00:00') },
+    { entryTime: new Date('2024-11-11T09:00:00') },
+    { entryTime: new Date('2024-11-11T11:00:00') },
+    { entryTime: new Date('2024-11-12T14:00:00') },
+    { entryTime: new Date('2024-11-12T15:00:00') },
+    { entryTime: new Date('2024-11-14T09:30:00') },
+    { entryTime: new Date('2024-11-15T17:00:00') },
+    { entryTime: new Date('2024-11-15T19:30:00') },
+    { entryTime: new Date('2024-11-15T21:00:00') },
+  ];
+
+  lineChartData: any[] = [];
+  selectedView: string = 'daily';
+
+  ngOnInit() {
+    this.updateChartData('daily'); // Default view
+  }
+
+  updateChartData(view: string) {
+    this.selectedView = view;
+
+    const groupedData = this.groupParkingData(view);
+    this.lineChartData = [
+      {
+        name: 'Vehicles Parked',
+        series: groupedData.map((data) => ({
+          name: data.label, // X-axis label (date, week, or month)
+          value: data.count, // Number of cars parked
+        })),
+      },
+    ];
+  }
+
+  groupParkingData(view: string) {
+    const grouped: { [key: string]: number } = {};
+
+    this.vehicles.forEach((vehicle) => {
+      const date = new Date(vehicle.entryTime);
+      let key = '';
+
+      if (view === 'daily') {
+        key = date.toISOString().split('T')[0]; // Group by day (YYYY-MM-DD)
+      } else if (view === 'weekly') {
+        const week = this.getWeekOfYear(date);
+        key = `Week ${week}, ${date.getFullYear()}`; // Group by week
+      } else if (view === 'monthly') {
+        key = `${date.toLocaleString('default', { month: 'long' })}, ${date.getFullYear()}`; // Group by month
+      }
+
+      grouped[key] = (grouped[key] || 0) + 1;
+    });
+
+    return Object.keys(grouped).map((key) => ({
+      label: key,
+      count: grouped[key],
+    }));
+  }
+
+  getWeekOfYear(date: Date): number {
+    const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / (24 * 60 * 60 * 1000);
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  }
   multi: any[] = multi;
   view: [number, number] = [700, 300];
 
@@ -19,8 +86,8 @@ export class LineChartComponent {
   yAxis: boolean = true;
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
+  xAxisLabel: string = 'Time';
+  yAxisLabel: string = 'Number of Vehicles';
   timeline: boolean = true;
 
   colorScheme: Color = {
@@ -29,7 +96,6 @@ export class LineChartComponent {
     selectable: true,
     name: 'Customer Usage',
   };
-
 
   constructor() {
     Object.assign(this, { multi });

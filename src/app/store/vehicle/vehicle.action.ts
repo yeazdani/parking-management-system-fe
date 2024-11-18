@@ -15,5 +15,7 @@ export const setTotalCapacitySuccess = createAction('[Vehicle Effect Total] Tota
 
 export const clearLocalStorage = createAction('[Settings Component CLS] Clear Local Storage Action');
 export const clearStorageSuccess = createAction('[Vehicle Effect CLS] Clear Storage Success Action');
+export const populateMockData = createAction('[Settings Component PMD] Populate Mock Data Action', props<{ vehicles: IVehicle[] }>());
+export const populateMockDataSuccess = createAction('[Vehicle Effect PMD] Populate Mock Data Success Action', props<{ vehicles: IVehicle[] }>());
 
 export const setEmptySlots = createAction('[Vehicle Effect ES] Set Empty Slots Action', props<{ emptySlots: number | null }>());

@@ -13,3 +13,11 @@
   background-color: rgb(232, 249, 252); /* Optional: Light background color */
   border-radius: 8px; /* Optional: Rounded corners */
 }
+
+.center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0; 
+}

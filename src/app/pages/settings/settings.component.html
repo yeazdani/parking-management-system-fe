@@ -9,5 +9,6 @@
   <div class="form-actions">
     <button mat-raised-button color="primary" type="submit" [disabled]="settingsForm.invalid && !settingsForm.touched">Save</button>
     <button mat-raised-button color="warn" type="button" (click)="clearLocalStorage()">Clear Local Storage</button>
+    <button mat-raised-button color="warn" type="button" (click)="populateMockData()">Populate 20 Mock Data</button>
   </div>
 </form>
