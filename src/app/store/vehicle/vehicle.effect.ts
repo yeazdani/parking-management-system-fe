@@ -15,6 +15,8 @@ import {
   editVehicleAction,
   editVehicleSuccessAction,
   getVehiclesAction,
+  populateMockData,
+  populateMockDataSuccess,
   setEmptySlots,
   setTotalCapacity,
   setTotalCapacitySuccess,
@@ -100,6 +102,18 @@ export class VehicleEffects {
         this.storageService.clearStorage();
         this.snackbarService.openSnackBar(ESnackbar.CLEARED);
         return of(clearStorageSuccess());
+      }),
+      catchError((error) => [createVehicleFailedAction({ error })]) // Failure action)
+    )
+  );
+
+  populateMockData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(populateMockData),
+      mergeMap((action) => {
+        this.storageService.setMockData(action.vehicles);
+        this.snackbarService.openSnackBar(ESnackbar.ADDED);
+        return of(populateMockDataSuccess({ vehicles: action.vehicles }));
       }),
       catchError((error) => [createVehicleFailedAction({ error })]) // Failure action)
     )

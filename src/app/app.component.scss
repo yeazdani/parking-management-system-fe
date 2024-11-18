@@ -14,3 +14,9 @@ mat-sidenav {
 mat-toolbar {
   border-bottom: 1px solid white;
 }
+
+.selected {
+  font-weight: bold;
+  color: #1976d2; /* Adjust color as needed */
+  background-color: rgba(169, 165, 165, 0.272);
+}

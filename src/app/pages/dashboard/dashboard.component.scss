@@ -1,0 +1,23 @@
+.two-columns {
+  display: flex; /* Enables Flexbox */
+  flex-wrap: wrap; /* Ensures responsiveness for smaller screens */
+  gap: 16px; /* Adds spacing between columns */
+}
+
+.two-columns > .column {
+  flex: 1; /* Allows both columns to take equal width */
+  min-width: 200px; /* Ensures a minimum width for each column */
+  padding: 16px; /* Adds some padding inside each column */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a light shadow */
+  border: 1px solid #bebebec3; /* Optional: Adds a border */
+  background-color: rgb(232, 249, 252); /* Optional: Light background color */
+  border-radius: 8px; /* Optional: Rounded corners */
+}
+
+.center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0; 
+}

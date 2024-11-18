@@ -58,4 +58,8 @@ export class StorageService {
     this.localStorage.clear(ELocalStorageKeys.VEHICLES);
     this.localStorage.clear(ELocalStorageKeys.TOTAL_CAPACITY);
   }
+
+  setMockData(vehicles: IVehicle[]): void {
+    this.localStorage.store(ELocalStorageKeys.VEHICLES, vehicles);
+  }
 }

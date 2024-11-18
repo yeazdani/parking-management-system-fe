@@ -1,12 +1,11 @@
 <mat-sidenav-container class="sidenav-container">
   <!-- Sidenav -->
   <mat-sidenav #sidenav mode="side" [opened]="true">
-    <mat-toolbar>DataVanced</mat-toolbar>
+    <mat-toolbar>Parking MS</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['']" routerLinkActive="router-link-active">Dashboard</a>
-      <a mat-list-item [routerLink]="['/parking-entry']" routerLinkActive="router-link-active">Parking Entry</a>
-      <a mat-list-item [routerLink]="['/parking-list']" routerLinkActive="router-link-active">Parking List</a>
-      <a mat-list-item [routerLink]="['/settings']" routerLinkActive="router-link-active">Settings</a>
+      @for (item of navigation; track item) {
+      <a mat-list-item [routerLink]="[item.url]" [ngClass]="{'selected': item.isActive}">{{ item.name }}</a>
+      }
     </mat-nav-list>
   </mat-sidenav>
 
@@ -16,7 +15,7 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>My App</span>
+      <span>{{currentPage}}</span>
     </mat-toolbar>
     <div class="content">
       <router-outlet></router-outlet>

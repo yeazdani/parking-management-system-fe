@@ -1,0 +1,26 @@
+import { IVehicle } from "../shared/interface/vehicle.interface";
+
+export const mockVehicles: IVehicle[] = [
+  { id: 1, licenseNumber: "ABC-1234", vehicleType: "Car", ownerName: "John Doe", ownerPhone: "123-456-7890", status: "in", ownerAddress: "123 Elm Street", entryTime: new Date("2024-11-01T08:00:00"), exitTime: new Date("2024-11-01T12:00:00"), parkingCharge: 50 },
+  { id: 2, licenseNumber: "DEF-5678", vehicleType: "Bike", ownerName: "Jane Smith", ownerPhone: "987-654-3210", status: "out", ownerAddress: "456 Maple Avenue", entryTime: new Date("2024-11-01T10:30:00"), exitTime: new Date("2024-11-01T11:30:00"), parkingCharge: 20 },
+  { id: 3, licenseNumber: "GHI-9012", vehicleType: "Truck", ownerName: "Bob Johnson", ownerPhone: "555-666-7777", status: "in", ownerAddress: "789 Oak Lane", entryTime: new Date("2024-11-02T14:00:00"), exitTime: null, parkingCharge: null },
+  { id: 4, licenseNumber: "JKL-3456", vehicleType: "Car", ownerName: "Alice Brown", ownerPhone: "444-555-6666", status: "out", ownerAddress: "101 Pine Road", entryTime: new Date("2024-11-03T09:00:00"), exitTime: new Date("2024-11-03T12:00:00"), parkingCharge: 40 },
+  { id: 5, licenseNumber: "MNO-7890", vehicleType: "Micro-bus", ownerName: "Charlie White", ownerPhone: "333-444-5555", status: "in", ownerAddress: "202 Birch Street", entryTime: new Date("2024-11-03T11:00:00"), exitTime: null, parkingCharge: null },
+  { id: 6, licenseNumber: "PQR-2345", vehicleType: "Bike", ownerName: "Diana Black", ownerPhone: "222-333-4444", status: "out", ownerAddress: "303 Cedar Lane", entryTime: new Date("2024-11-04T07:00:00"), exitTime: new Date("2024-11-04T08:00:00"), parkingCharge: 15 },
+  { id: 7, licenseNumber: "STU-6789", vehicleType: "Car", ownerName: "Eve Green", ownerPhone: "111-222-3333", status: "in", ownerAddress: "404 Spruce Road", entryTime: new Date("2024-11-04T15:30:00"), exitTime: null, parkingCharge: null },
+  { id: 8, licenseNumber: "VWX-1234", vehicleType: "Truck", ownerName: "Frank Blue", ownerPhone: "999-888-7777", status: "out", ownerAddress: "505 Fir Street", entryTime: new Date("2024-11-05T06:00:00"), exitTime: new Date("2024-11-05T09:30:00"), parkingCharge: 80 },
+  { id: 9, licenseNumber: "YZA-5670", vehicleType: "Bike", ownerName: "Mia Davis", ownerPhone: "666-555-4444", status: "in", ownerAddress: "456 Pine Road", entryTime: new Date("2024-11-05T12:30:00"), exitTime: null, parkingCharge: null },
+  { id: 10, licenseNumber: "BCD-2345", vehicleType: "Micro-bus", ownerName: "George Violet", ownerPhone: "777-666-5555", status: "out", ownerAddress: "606 Ash Avenue", entryTime: new Date("2024-11-06T09:00:00"), exitTime: new Date("2024-11-06T13:00:00"), parkingCharge: 100 },
+  { id: 11, licenseNumber: "EFG-6789", vehicleType: "Car", ownerName: "Hannah Yellow", ownerPhone: "888-777-6666", status: "in", ownerAddress: "707 Magnolia Street", entryTime: new Date("2024-11-07T10:00:00"), exitTime: null, parkingCharge: null },
+  { id: 12, licenseNumber: "HIJ-3456", vehicleType: "Truck", ownerName: "Ivy Orange", ownerPhone: "333-222-1111", status: "out", ownerAddress: "808 Chestnut Lane", entryTime: new Date("2024-10-20T10:00:00"), exitTime: new Date("2024-10-20T13:30:00"), parkingCharge: 120 },
+  { id: 13, licenseNumber: "KLM-7890", vehicleType: "Bike", ownerName: "Jack Red", ownerPhone: "444-333-2222", status: "in", ownerAddress: "909 Walnut Road", entryTime: new Date("2024-11-08T08:00:00"), exitTime: null, parkingCharge: null },
+  { id: 14, licenseNumber: "NOP-1234", vehicleType: "Car", ownerName: "Kelly White", ownerPhone: "555-444-3333", status: "out", ownerAddress: "1010 Willow Street", entryTime: new Date("2024-11-09T07:00:00"), exitTime: new Date("2024-11-09T10:00:00"), parkingCharge: 30 },
+  { id: 15, licenseNumber: "QRS-5678", vehicleType: "Micro-bus", ownerName: "Liam Pink", ownerPhone: "666-555-4444", status: "in", ownerAddress: "1111 Sycamore Lane", entryTime: new Date("2024-11-10T12:00:00"), exitTime: null, parkingCharge: null },
+  { id: 16, licenseNumber: "TUV-9012", vehicleType: "Bike", ownerName: "Mason Grey", ownerPhone: "777-666-5555", status: "out", ownerAddress: "1212 Aspen Street", entryTime: new Date("2024-11-11T11:00:00"), exitTime: new Date("2024-11-11T13:00:00"), parkingCharge: 10 },
+  { id: 17, licenseNumber: "WXY-3456", vehicleType: "Truck", ownerName: "Nina Aqua", ownerPhone: "888-777-6666", status: "in", ownerAddress: "1313 Birch Lane", entryTime: new Date("2024-11-12T09:00:00"), exitTime: null, parkingCharge: null },
+  { id: 18, licenseNumber: "ZAB-7890", vehicleType: "Car", ownerName: "Oscar Black", ownerPhone: "999-888-7777", status: "out", ownerAddress: "1414 Poplar Road", entryTime: new Date("2024-11-13T10:30:00"), exitTime: new Date("2024-11-13T11:30:00"), parkingCharge: 25 },
+  { id: 19, licenseNumber: "CDE-2345", vehicleType: "Micro-bus", ownerName: "Paul White", ownerPhone: "111-222-3333", status: "in", ownerAddress: "1515 Cottonwood Street", entryTime: new Date("2024-11-14T07:00:00"), exitTime: null, parkingCharge: null },
+  { id: 20, licenseNumber: "FGH-6789", vehicleType: "Bike", ownerName: "Quinn Indigo", ownerPhone: "222-333-4444", status: "out", ownerAddress: "1616 Maple Lane", entryTime: new Date("2024-11-15T06:30:00"), exitTime: new Date("2024-11-15T07:30:00"), parkingCharge: 15 },
+];
+
+  
