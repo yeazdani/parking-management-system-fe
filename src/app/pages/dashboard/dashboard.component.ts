@@ -26,6 +26,8 @@ export class DashboardComponent {
   totalParkingSlots: string | number = 'To be Defined!';
   availableParkingSlots: string | number = 'To be Calculated!';
 
+  vehiclesEntryTimes!: { entryTime: Date }[];
+
   constructor(private store: Store<AppState>, private calculationService: CalculationService) {}
 
   ngOnInit(): void {
@@ -35,8 +37,12 @@ export class DashboardComponent {
         this.totalParkingSlots = vehicleState.totalCapacity || 'To be Defined!';
         if (vehicleState.vehicles.length) {
           const vehicles = [...vehicleState.vehicles];
+          this.availableParkingSlots = vehicleState.emptySlots || 'To be calculated!';
           this.pieCharData = this.calculationService.getPieChartDataFormat(vehicles, this.vehicleTypes);
           this.totalCarParked = vehicleState.vehicles.length;
+          this.vehiclesEntryTimes = vehicleState.vehicles.map((vehicle) => {
+            return { entryTime: new Date(vehicle.entryTime || '') };
+          });
         }
       })
     );

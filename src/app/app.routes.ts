@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
   },
   {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+  },
+  {
     path: 'parking-entry',
     loadComponent: () => import('./pages/parking-entry/parking-entry.component').then((m) => m.ParkingEntryComponent),
   },
@@ -17,4 +21,5 @@ export const routes: Routes = [
     path: 'settings',
     loadComponent: () => import('./pages/settings/settings.component').then((m) => m.SettingsComponent),
   },
+  
 ];

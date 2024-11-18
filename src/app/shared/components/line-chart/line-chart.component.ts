@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
@@ -9,19 +9,20 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
 })
 export class LineChartComponent {
   views = ['daily', 'weekly', 'monthly'];
-  
-  vehicles: { entryTime: Date }[] = [
-    { entryTime: new Date('2024-11-10T10:00:00') },
-    { entryTime: new Date('2024-11-10T12:00:00') },
-    { entryTime: new Date('2024-11-11T09:00:00') },
-    { entryTime: new Date('2024-11-11T11:00:00') },
-    { entryTime: new Date('2024-11-12T14:00:00') },
-    { entryTime: new Date('2024-11-12T15:00:00') },
-    { entryTime: new Date('2024-11-14T09:30:00') },
-    { entryTime: new Date('2024-11-15T17:00:00') },
-    { entryTime: new Date('2024-11-15T19:30:00') },
-    { entryTime: new Date('2024-11-15T21:00:00') },
-  ];
+  @Input() vehiclesEntryTimes!: { entryTime: Date }[];
+
+  // vehiclesEntryTimes: { entryTime: Date }[] = [
+  //   { entryTime: new Date('2024-11-10T10:00:00') },
+  //   { entryTime: new Date('2024-11-10T12:00:00') },
+  //   { entryTime: new Date('2024-11-11T09:00:00') },
+  //   { entryTime: new Date('2024-11-11T11:00:00') },
+  //   { entryTime: new Date('2024-11-12T14:00:00') },
+  //   { entryTime: new Date('2024-11-12T15:00:00') },
+  //   { entryTime: new Date('2024-11-14T09:30:00') },
+  //   { entryTime: new Date('2024-11-15T17:00:00') },
+  //   { entryTime: new Date('2024-11-15T19:30:00') },
+  //   { entryTime: new Date('2024-11-15T21:00:00') },
+  // ];
 
   lineChartData: any[] = [];
   selectedView: string = 'daily';
@@ -48,7 +49,7 @@ export class LineChartComponent {
   groupParkingData(view: string) {
     const grouped: { [key: string]: number } = {};
 
-    this.vehicles.forEach((vehicle) => {
+    this.vehiclesEntryTimes.forEach((vehicle) => {
       const date = new Date(vehicle.entryTime);
       let key = '';
 

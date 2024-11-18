@@ -39,7 +39,7 @@
   </div>
   <div class="column">
     @if(pieCharData){
-    <app-line-chart></app-line-chart>
+    <app-line-chart [vehiclesEntryTimes]="vehiclesEntryTimes"></app-line-chart>
     }@else{
     <div style="color: black">Line Chart Data Is Not Available</div>
     }

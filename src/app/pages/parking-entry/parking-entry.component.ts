@@ -31,7 +31,6 @@ export class ParkingEntryComponent {
   }
 
   addVehicle(vehicleData: IVehicle) {
-    
     this.store.dispatch(createVehicleAction({ vehicle: vehicleData }));
   }
 
